@@ -1,5 +1,8 @@
-package lti.com.entity;
+package com.lti.entity;
 
 public enum UserType {
-	MINISTRY, STATE_NODAL_OFFICER, INSTITUTE, STUDENT
+	MINISTRY, 
+	STATE_NODAL_OFFICER, 
+	INSTITUTE, 
+	STUDENT
 }

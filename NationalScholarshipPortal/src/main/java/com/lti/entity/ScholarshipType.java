@@ -1,9 +1,13 @@
 package com.lti.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -15,30 +19,41 @@ public class ScholarshipType {
 	int scholarshipId;
 
 	String scholarshipName;
-	String EligibilityCriteria;
+	String information;
+	String eligibilityCriteria;
+
+	@OneToMany(mappedBy="scholarshipType",cascade = CascadeType.ALL)
+	List<ScholarshipApplication> scholarshipApplications;
 
 	public int getScholarshipId() {
 		return scholarshipId;
 	}
-
 	public void setScholarshipId(int scholarshipId) {
 		this.scholarshipId = scholarshipId;
 	}
-
 	public String getScholarshipName() {
 		return scholarshipName;
 	}
-
 	public void setScholarshipName(String scholarshipName) {
 		this.scholarshipName = scholarshipName;
 	}
-
-	public String getEligibilityCriteria() {
-		return EligibilityCriteria;
+	public String getInformation() {
+		return information;
 	}
-
+	public void setInformation(String information) {
+		this.information = information;
+	}
+	public String getEligibilityCriteria() {
+		return eligibilityCriteria;
+	}
 	public void setEligibilityCriteria(String eligibilityCriteria) {
-		EligibilityCriteria = eligibilityCriteria;
+		this.eligibilityCriteria = eligibilityCriteria;
+	}
+	public List<ScholarshipApplication> getScholarshipApplications() {
+		return scholarshipApplications;
+	}
+	public void setScholarshipApplications(List<ScholarshipApplication> scholarshipApplications) {
+		this.scholarshipApplications = scholarshipApplications;
 	}
 
 }
