@@ -16,6 +16,7 @@ public class ApplicationStatus {
 	@GeneratedValue(generator="appStatus_seq", strategy = GenerationType.SEQUENCE)
 	int scholarshipApplicationId;
 	
+	
 	boolean approvedByInstitute;
 	LocalDate institute_timestamp;
 	boolean approvedBySO;
