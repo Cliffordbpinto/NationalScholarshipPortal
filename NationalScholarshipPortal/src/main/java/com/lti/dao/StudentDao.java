@@ -1,12 +1,15 @@
 package com.lti.dao;
+//package com.lti.dao;
 
 import java.util.List;
+
+import com.lti.entity.Student;
 
 public interface StudentDao {
 
 	public List<Student> getAllStudents();
 
-	public Optional<Student> getStudent(int id);
+	//public Optional<Student> getStudent(int id);
 
 	public void saveStudent(Student s);
 
