@@ -19,6 +19,7 @@ public class StateNodalOfficer {
 	String password;
 	String name;
 	StateType type;
+	
 	public int getStateNodalOfficerId() {
 		return stateNodalOfficerId;
 	}

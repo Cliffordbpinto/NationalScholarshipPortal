@@ -16,7 +16,7 @@ public class ApplicationStatus {
 	@Id
 	@SequenceGenerator(name = "appStatus_seq", initialValue = 1001, allocationSize = 1)
 	@GeneratedValue(generator = "appStatus_seq", strategy = GenerationType.SEQUENCE)
-	int scholarshipApplicationId;
+	int applicationStatusId;
 
 	boolean approvedByInstitute;
 	LocalDate institute_timestamp;
@@ -29,11 +29,12 @@ public class ApplicationStatus {
 	@JoinColumn(name="applicationId")
 	ScholarshipApplication scholarshipApplication;
 
-	public int getScholarshipApplicationId() {
-		return scholarshipApplicationId;
+	
+	public int getApplicationStatusId() {
+		return applicationStatusId;
 	}
-	public void setScholarshipApplicationId(int scholarshipApplicationId) {
-		this.scholarshipApplicationId = scholarshipApplicationId;
+	public void setApplicationStatusId(int applicationStatusId) {
+		this.applicationStatusId = applicationStatusId;
 	}
 	public boolean isApprovedByInstitute() {
 		return approvedByInstitute;
