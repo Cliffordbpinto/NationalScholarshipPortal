@@ -7,9 +7,10 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import com.lti.entity.Student;
+import com.lti.entity.EducationDetails;
 
 @Component
-public class StudentDaoImpl implements StudentDao{
+public class StudentEducationDetailsDaoImpl implements StudentEducationDetailsDao{
 
 	@PersistenceContext
 	EntityManager em;
@@ -23,6 +24,11 @@ public class StudentDaoImpl implements StudentDao{
 
 	public Student searchStudentById(int studentId) {
 		return em.find(Student.class, studentId);
+	}
+	
+	public EducationDetails addOrUpdateEducationDetails(EducationDetails educationdetails) {
+		EducationDetails educationdetails11 = em.merge(educationdetails);
+		return educationdetails11;
 	}
 
 	
