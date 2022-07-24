@@ -10,5 +10,7 @@ public interface StudentEducationDetailsDao {
 	Student searchStudentById(int studentId);
 	
 	EducationDetails addOrUpdateEducationDetails(EducationDetails educationdetails);
+	
+	EducationDetails getEducationDetailsByStudentId(int studentId);
 
 }
