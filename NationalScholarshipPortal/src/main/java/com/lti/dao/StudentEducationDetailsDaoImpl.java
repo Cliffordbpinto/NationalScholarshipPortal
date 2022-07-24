@@ -3,6 +3,8 @@ package com.lti.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import javax.persistence.TypedQuery;
+import org.hibernate.type.descriptor.sql.JdbcTypeEducationDetails.Details;
 
 import org.springframework.stereotype.Component;
 
@@ -30,6 +32,14 @@ public class StudentEducationDetailsDaoImpl implements StudentEducationDetailsDa
 		EducationDetails educationdetails11 = em.merge(educationdetails);
 		return educationdetails11;
 	}
+	
+	public EducationDetails getEducationDetailsByStudentId(int studentId) {
+		String jpql="Select ed from EducationDetails ed where ed.studentId=:sid";
+		TypedQuery<EducationDetails> query = em.createQuery(jpql, EducationDetails.class);
+		query.setParameter("sid", studentId);
+		return query.getSingleResult();
+
+        }
 
 	
 	
