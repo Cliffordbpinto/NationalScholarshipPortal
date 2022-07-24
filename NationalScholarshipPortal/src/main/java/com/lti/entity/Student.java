@@ -42,6 +42,9 @@ public class Student {
 	@OneToOne(mappedBy="student", cascade = CascadeType.ALL)
 	StudentFamily studentFamily;
 	
+	@OneToOne(mappedBy="student", cascade = CascadeType.ALL)
+	StudentDocuments studentDocuments;
+	
 	@ManyToOne
 	@JoinColumn(name="instituteId")
 	Institute institute;

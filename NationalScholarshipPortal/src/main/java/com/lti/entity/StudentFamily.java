@@ -15,7 +15,7 @@ public class StudentFamily {
 	@Id
 	@SequenceGenerator(name = "studentFamily_seq", allocationSize = 1, initialValue = 801)
 	@GeneratedValue(generator = "studentFamily_seq", strategy = GenerationType.SEQUENCE)
-	int familyId;
+	int studentFamilyId;
 	
 	String fatherName;
 	String motherName;
@@ -28,11 +28,11 @@ public class StudentFamily {
 	@JoinColumn(name="studentId")
 	Student student;
 
-	public int getFamilyId() {
-		return familyId;
+	public int getStudentFamilyId() {
+		return studentFamilyId;
 	}
-	public void setFamilyId(int familyId) {
-		this.familyId = familyId;
+	public void setStudentFamilyId(int studentFamilyId) {
+		this.studentFamilyId = studentFamilyId;
 	}
 	public String getFatherName() {
 		return fatherName;

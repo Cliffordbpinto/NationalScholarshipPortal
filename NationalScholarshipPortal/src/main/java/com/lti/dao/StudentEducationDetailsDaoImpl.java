@@ -38,5 +38,5 @@ public class StudentEducationDetailsDaoImpl implements StudentEducationDetailsDa
 		query.setParameter("sid", studentId);
 		return query.getSingleResult();
 
-        }
+	}
 }
