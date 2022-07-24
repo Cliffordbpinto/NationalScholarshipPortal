@@ -37,14 +37,14 @@ public class Student {
 	BankDetails bankDetails;
 	
 	@OneToOne(mappedBy="student", cascade = CascadeType.ALL)
-	BankDetails educationDetails;
+	EducationDetails educationDetails;
 	
 	@OneToOne(mappedBy="student", cascade = CascadeType.ALL)
-	BankDetails studentFamily;
+	StudentFamily studentFamily;
 	
 	@ManyToOne
 	@JoinColumn(name="instituteId")
-	User institute;
+	Institute institute;
 	
 	@OneToMany(mappedBy="student", cascade = CascadeType.ALL)
 	List<ScholarshipApplication> scholarshipApplications;
@@ -129,27 +129,27 @@ public class Student {
 		this.bankDetails = bankDetails;
 	}
 
-	public BankDetails getEducationDetails() {
+	public EducationDetails getEducationDetails() {
 		return educationDetails;
 	}
 
-	public void setEducationDetails(BankDetails educationDetails) {
+	public void setEducationDetails(EducationDetails educationDetails) {
 		this.educationDetails = educationDetails;
 	}
 
-	public BankDetails getStudentFamily() {
+	public StudentFamily getStudentFamily() {
 		return studentFamily;
 	}
 
-	public void setStudentFamily(BankDetails studentFamily) {
+	public void setStudentFamily(StudentFamily studentFamily) {
 		this.studentFamily = studentFamily;
 	}
 
-	public User getInstitute() {
+	public Institute getInstitute() {
 		return institute;
 	}
 
-	public void setInstitute(User institute) {
+	public void setInstitute(Institute institute) {
 		this.institute = institute;
 	}
 
@@ -161,5 +161,6 @@ public class Student {
 		this.scholarshipApplications = scholarshipApplications;
 	}
 
+	
 		
 }

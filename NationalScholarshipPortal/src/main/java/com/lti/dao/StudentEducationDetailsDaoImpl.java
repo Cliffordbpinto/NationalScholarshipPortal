@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.persistence.TypedQuery;
-import org.hibernate.type.descriptor.sql.JdbcTypeEducationDetails.Details;
 
 import org.springframework.stereotype.Component;
 
@@ -40,8 +39,4 @@ public class StudentEducationDetailsDaoImpl implements StudentEducationDetailsDa
 		return query.getSingleResult();
 
         }
-
-	
-	
-
 }
