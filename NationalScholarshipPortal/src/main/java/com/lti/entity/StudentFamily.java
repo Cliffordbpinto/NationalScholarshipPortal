@@ -21,6 +21,7 @@ public class StudentFamily {
 	String motherName;
 	String fatherOccupation;
 	String motherOccupation;
+	Double annualIncome;
 	String fatherAadhaarNo;
 	String motherAadhaarNo;
 
@@ -28,6 +29,12 @@ public class StudentFamily {
 	@JoinColumn(name="studentId")
 	Student student;
 
+	public Double getAnnualIncome() {
+		return annualIncome;
+	}
+	public void setAnnualIncome(Double annualIncome) {
+		this.annualIncome = annualIncome;
+	}
 	public int getStudentFamilyId() {
 		return studentFamilyId;
 	}

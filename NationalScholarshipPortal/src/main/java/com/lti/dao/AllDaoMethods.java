@@ -39,7 +39,7 @@ public interface AllDaoMethods {
 	StudentDocuments searchStudentDocumentsByStudentId(int studentId);
 	
 	//ScholarshipApplication
-	ScholarshipApplication addOrUpdate(ScholarshipApplication application);
+	ScholarshipApplication addOrUpdateScholarshipApplication(ScholarshipApplication application);
 	ScholarshipApplication searchScholarshipApplicationById (int applicationId);
 	List<ScholarshipApplication> searchScholarshipApplicationByStudentId(int studentId);
 	ScholarshipApplication searchScholarshipApplicationByStudentIdAndType(int studentId, ScholarshipType scholarsipId);

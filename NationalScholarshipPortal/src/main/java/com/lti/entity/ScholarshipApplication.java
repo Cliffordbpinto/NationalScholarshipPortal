@@ -30,11 +30,21 @@ public class ScholarshipApplication {
 	@JoinColumn(name="scholarshipType")
 	ScholarshipType scholarshipType;
 	
-	@OneToOne(mappedBy="applicationStatus")
+	@OneToOne(mappedBy="scholarshipApplication")
 	ApplicationStatus applicationStatus;
+	
+	@ManyToOne
+	@JoinColumn(name="studentId")
+	Student student;
 
 	public int getApplicationId() {
 		return applicationId;
+	}
+	public Student getStudent() {
+		return student;
+	}
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 	public void setApplicationId(int applicationId) {
 		this.applicationId = applicationId;

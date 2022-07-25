@@ -3,7 +3,11 @@ package com.lti.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
@@ -22,13 +26,22 @@ import com.lti.entity.StudentFamily;
 @Component
 public class AllDaoMethodsImpl implements AllDaoMethods {
 	
-	@PersistenceContext
+	EntityManagerFactory emf;
 	EntityManager em;
+	EntityTransaction tx;
+	
+	public AllDaoMethodsImpl() {
+		emf = Persistence.createEntityManagerFactory("oracle-pu");
+		em = emf.createEntityManager();
+		tx = em.getTransaction();
+	}
 
 	//Student Entity
 	@Transactional
 	public Student addOrUpdateStudent(Student student) {
+		tx.begin();
 		Student StudentPersisted = em.merge(student);
+		tx.commit();
 		return StudentPersisted;
 	}
 	public Student searchStudentById(int studentId) {
@@ -39,7 +52,9 @@ public class AllDaoMethodsImpl implements AllDaoMethods {
 	//EducationDetails Entity
 	@Transactional
 	public EducationDetails addOrUpdateEducationDetails(EducationDetails educationDetails) {
+		tx.begin();
 		EducationDetails educationDetailsPersisted = em.merge(educationDetails);
+		tx.commit();
 		return educationDetailsPersisted;
 	}
 	public EducationDetails searchEducationDetailsById(int educationDetailsId) {
@@ -47,9 +62,11 @@ public class AllDaoMethodsImpl implements AllDaoMethods {
 	}
 	public EducationDetails searchEducationDetailsByStudentId(int studentId) {
 		String jpql="Select ed from EducationDetails ed where ed.studentId=:sid";
-		TypedQuery<EducationDetails> query = em.createQuery(jpql, EducationDetails.class);
-		query.setParameter("sid", studentId);
-		return query.getSingleResult();
+		//Query query = em.createQuery(jpql, EducationDetails.class);
+		//query.setParameter("sid", studentId);
+		//return query.getSingleResult();
+		
+		return em.createQuery(jpql,EducationDetails.class).setParameter("sid",studentId).getSingleResult();
 	}
 
 	
@@ -63,7 +80,10 @@ public class AllDaoMethodsImpl implements AllDaoMethods {
 		return em.find(BankDetails.class, bankDetailsId);
 	}
 	public BankDetails searchBankDetailsByStudentId(int studentId) {
-		return null;
+		String jpql="Select bd from EducationDetails bd where bd.studentId=:sid";
+		TypedQuery<BankDetails> query = em.createQuery(jpql, BankDetails.class);
+		query.setParameter("sid", studentId);
+		return query.getSingleResult();
 	}
 
 	
@@ -97,7 +117,7 @@ public class AllDaoMethodsImpl implements AllDaoMethods {
 	
 	//ScholarshipApplication
 	@Transactional
-	public ScholarshipApplication addOrUpdate(ScholarshipApplication application) {
+	public ScholarshipApplication addOrUpdateScholarshipApplication(ScholarshipApplication application) {
 		ScholarshipApplication scholarshipApplicationPersisted = em.merge(application);
 		return scholarshipApplicationPersisted;
 	}

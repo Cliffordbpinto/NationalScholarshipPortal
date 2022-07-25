@@ -26,12 +26,12 @@ public class Student {
 
 	String email;
 	String password;
-	int aadharNo;
+	String aadharNo;
 	String stateofDomicile;
 	String name;
 	LocalDate dob;
 	String gender;
-	int phoneNumber;
+	String phoneNumber;
 	
 	@OneToOne(mappedBy="student", cascade = CascadeType.ALL)
 	BankDetails bankDetails;
@@ -76,11 +76,11 @@ public class Student {
 		this.password = password;
 	}
 
-	public int getAadharNo() {
+	public String getAadharNo() {
 		return aadharNo;
 	}
 
-	public void setAadharNo(int aadharNo) {
+	public void setAadharNo(String aadharNo) {
 		this.aadharNo = aadharNo;
 	}
 
@@ -116,11 +116,11 @@ public class Student {
 		this.gender = gender;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
