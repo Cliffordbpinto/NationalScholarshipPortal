@@ -2,6 +2,7 @@ package com.lti.test;
 
 import static org.junit.Assert.*;
 
+import java.applet.Applet;
 import java.time.LocalDate;
 
 import org.junit.Before;
@@ -12,6 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.lti.dao.AllDaoMethods;
 import com.lti.dao.AllDaoMethodsImpl;
+import com.lti.entity.ApplicationStatus;
 import com.lti.entity.BankDetails;
 import com.lti.entity.DisabilityStatus;
 import com.lti.entity.EducationDetails;
@@ -153,12 +155,14 @@ public class DaoTest {
 	// ScholarshipApplication Entity
 	@Test
 	public void addOrUpdateScholarshipApplicationTest() {
+		System.out.println(dao.searchScholarshipTypeById(1002).getScholarshipName());
 		ScholarshipApplication sa = new ScholarshipApplication();
 		sa.setCaste("caste");
 		sa.setReligion("religion");
 		sa.setDateApplied(LocalDate.now());
 		sa.setDisabilityStatus(DisabilityStatus.AIDP);
 		sa.setStudent(dao.searchStudentById(10023));
+		sa.setScholarshipType(dao.searchScholarshipTypeById(1002));
 		assertNotNull(dao.addOrUpdateScholarshipApplication(sa));
 	}
 	@Test
@@ -169,9 +173,20 @@ public class DaoTest {
 	public void searchScholarshipApplicationByStudentId() {
 		assertNotNull(dao.searchScholarshipApplicationByStudentId(10023));
 	}
-//	@Test
-//	public void searchScholarshipApplicationByStudentIdAndType() {
-//		assertNotNull(dao.searchScholarshipApplicationByStudentIdAndType(10023, Scho))
-//	}
+	@Test
+	public void searchScholarshipApplicationByStudentIdAndType() {
+		assertNotNull(dao.searchScholarshipApplicationByStudentIdAndType(10023,1));
+	}
+	
+	// ApplicaitonStatus Entity
+	@Test
+	public void addOrUpdateApplicationStatusTest() {
+		ApplicationStatus as = new ApplicationStatus();
+		assertNotNull(dao.addOrUpdateApplicationStatus(as));
+	}
+	@Test
+	public void searchApplicationStatusByIdTest() {
+		assertNotNull(dao.searchApplicationStatusById(1));
+	}
 	
 }

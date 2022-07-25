@@ -124,7 +124,7 @@ public class AllDaoMethodsImpl implements AllDaoMethods {
 		return query.getSingleResult();
 	}
 
-	// ScholarshipApplication
+	// ScholarshipApplication --tested (Final scholarship data to be added in the database)
 	@Transactional
 	public ScholarshipApplication addOrUpdateScholarshipApplication(ScholarshipApplication application) {
 		tx.begin();
@@ -145,7 +145,7 @@ public class AllDaoMethodsImpl implements AllDaoMethods {
 	}
 
 	public ScholarshipApplication searchScholarshipApplicationByStudentIdAndType(int studentId,
-			ScholarshipType scholarsipId) {
+			int scholarsipId) {
 		return null;
 	}
 
@@ -175,4 +175,10 @@ public class AllDaoMethodsImpl implements AllDaoMethods {
 		return em.find(Institute.class, instituteId);
 	}
 
+	
+	// scholarshiptype entity
+	
+	public ScholarshipType searchScholarshipTypeById(int scholarshipId) {
+		return em.find(ScholarshipType.class, scholarshipId);
+	}
 }

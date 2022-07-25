@@ -42,7 +42,7 @@ public interface AllDaoMethods {
 	ScholarshipApplication addOrUpdateScholarshipApplication(ScholarshipApplication application);
 	ScholarshipApplication searchScholarshipApplicationById (int applicationId);
 	List<ScholarshipApplication> searchScholarshipApplicationByStudentId(int studentId);
-	ScholarshipApplication searchScholarshipApplicationByStudentIdAndType(int studentId, ScholarshipType scholarsipId);
+	ScholarshipApplication searchScholarshipApplicationByStudentIdAndType(int studentId, int scholarsipId);
 	
 	//ApplicationStatus
 	ApplicationStatus addOrUpdateApplicationStatus(ApplicationStatus applicationStatus);
@@ -52,6 +52,8 @@ public interface AllDaoMethods {
 	//Institute Entity
 	Institute addOrUpdateInstitute(Institute institute);
 	Institute searchInstituteById(int instituteId);
+	
+	ScholarshipType searchScholarshipTypeById(int scholarshipId);
 	
 	
 	
