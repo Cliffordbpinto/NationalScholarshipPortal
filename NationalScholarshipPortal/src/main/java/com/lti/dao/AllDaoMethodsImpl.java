@@ -31,7 +31,7 @@ public class AllDaoMethodsImpl implements AllDaoMethods {
 		tx = em.getTransaction();
 	}
 
-	// Student Entity
+	// Student Entity --tested
 	@Transactional
 	public Student addOrUpdateStudent(Student student) {
 		tx.begin();
@@ -44,7 +44,7 @@ public class AllDaoMethodsImpl implements AllDaoMethods {
 		return em.find(Student.class, studentId);
 	}
 
-	// EducationDetails Entity
+	// EducationDetails Entity --tested
 	@Transactional
 	public EducationDetails addOrUpdateEducationDetails(EducationDetails educationDetails) {
 		tx.begin();
@@ -64,28 +64,32 @@ public class AllDaoMethodsImpl implements AllDaoMethods {
 		return query.getSingleResult();
 	}
 
-	// BankDetails Entity
+	// BankDetails Entity --tested
 	@Transactional
 	public BankDetails addOrUpdateBankDetails(BankDetails bankDetails) {
+		tx.begin();
 		BankDetails bankDetailsPersisted = em.merge(bankDetails);
+		tx.commit();
 		return bankDetailsPersisted;
 	}
 
-	public BankDetails searchBankDetailsByID(int bankDetailsId) {
+	public BankDetails searchBankDetailsById(int bankDetailsId) {
 		return em.find(BankDetails.class, bankDetailsId);
 	}
 
 	public BankDetails searchBankDetailsByStudentId(int studentId) {
-		String jpql = "Select bd from EducationDetails bd where bd.studentId=:sid";
+		String jpql = "Select bd from BankDetails bd where bd.student.studentId=:sid";
 		TypedQuery<BankDetails> query = em.createQuery(jpql, BankDetails.class);
 		query.setParameter("sid", studentId);
 		return query.getSingleResult();
 	}
 
-	// StudentFamily Entity
+	// StudentFamily Entity --tested
 	@Transactional
 	public StudentFamily addOrUpdateStudentFamily(StudentFamily studentFamily) {
+		tx.begin();
 		StudentFamily studentFamilyPersisted = em.merge(studentFamily);
+		tx.commit();
 		return studentFamilyPersisted;
 	}
 
@@ -94,28 +98,38 @@ public class AllDaoMethodsImpl implements AllDaoMethods {
 	}
 
 	public StudentFamily searchStudentFamilyByStudentId(int studentId) {
-		return null;
+		String jpql = "Select bd from StudentFamily bd where bd.student.studentId=:sid";
+		TypedQuery<StudentFamily> query = em.createQuery(jpql, StudentFamily.class);
+		query.setParameter("sid", studentId);
+		return query.getSingleResult();
 	}
 
-	// StudentDocuments Entity
+	// StudentDocuments Entity --tested
 	@Transactional
 	public StudentDocuments addOrUpdateStudentDocuments(StudentDocuments studentDocuments) {
+		tx.begin();
 		StudentDocuments studentDocumentsPersisted = em.merge(studentDocuments);
+		tx.commit();
 		return studentDocumentsPersisted;
 	}
 
-	public StudentDocuments searchStudentDocumentsById(StudentDocuments studentDocumentsId) {
+	public StudentDocuments searchStudentDocumentsById(int studentDocumentsId) {
 		return em.find(StudentDocuments.class, studentDocumentsId);
 	}
 
 	public StudentDocuments searchStudentDocumentsByStudentId(int studentId) {
-		return null;
+		String jpql = "Select bd from StudentDocuments bd where bd.student.studentId=:sid";
+		TypedQuery<StudentDocuments> query = em.createQuery(jpql, StudentDocuments.class);
+		query.setParameter("sid", studentId);
+		return query.getSingleResult();
 	}
 
 	// ScholarshipApplication
 	@Transactional
 	public ScholarshipApplication addOrUpdateScholarshipApplication(ScholarshipApplication application) {
+		tx.begin();
 		ScholarshipApplication scholarshipApplicationPersisted = em.merge(application);
+		tx.commit();
 		return scholarshipApplicationPersisted;
 	}
 
@@ -124,7 +138,10 @@ public class AllDaoMethodsImpl implements AllDaoMethods {
 	}
 
 	public List<ScholarshipApplication> searchScholarshipApplicationByStudentId(int studentId) {
-		return null;
+		String jpql = "Select bd from ScholarshipApplication bd where bd.student.studentId=:sid";
+		TypedQuery<ScholarshipApplication> query = em.createQuery(jpql, ScholarshipApplication.class);
+		query.setParameter("sid", studentId);
+		return query.getResultList();
 	}
 
 	public ScholarshipApplication searchScholarshipApplicationByStudentIdAndType(int studentId,

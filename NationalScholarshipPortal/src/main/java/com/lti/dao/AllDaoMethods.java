@@ -25,7 +25,7 @@ public interface AllDaoMethods {
 	
 	//BankDetails Entity
 	BankDetails addOrUpdateBankDetails(BankDetails bankDetails);
-	BankDetails searchBankDetailsByID(int bankDetailsId);
+	BankDetails searchBankDetailsById(int bankDetailsId);
 	BankDetails searchBankDetailsByStudentId(int studentId);
 	
 	//StudentFamily Entity
@@ -35,7 +35,7 @@ public interface AllDaoMethods {
 	
 	//StudentDocuments Entity
 	StudentDocuments addOrUpdateStudentDocuments(StudentDocuments studentDocuments);
-	StudentDocuments searchStudentDocumentsById(StudentDocuments studentDocumentsId);
+	StudentDocuments searchStudentDocumentsById(int studentDocumentsId);
 	StudentDocuments searchStudentDocumentsByStudentId(int studentId);
 	
 	//ScholarshipApplication

@@ -25,7 +25,7 @@ public class StudentDocuments {
 	String idCard;
 	String casteOrIncomeCertificate;
 	String feeReciept;
-	String pasBook;
+	String passBook;
 	String domecile;
 	
 	@OneToOne
@@ -96,12 +96,12 @@ public class StudentDocuments {
 		this.feeReciept = feeReciept;
 	}
 
-	public String getPasBook() {
-		return pasBook;
+	public String getPassBook() {
+		return passBook;
 	}
 
-	public void setPasBook(String pasBook) {
-		this.pasBook = pasBook;
+	public void setPassBook(String passBook) {
+		this.passBook = passBook;
 	}
 
 	public String getDomecile() {
