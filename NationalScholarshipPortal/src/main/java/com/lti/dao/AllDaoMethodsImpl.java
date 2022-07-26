@@ -2,6 +2,7 @@ package com.lti.dao;
 
 import java.util.List;
 
+import javax.management.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -124,7 +125,20 @@ public class AllDaoMethodsImpl implements AllDaoMethods {
 		return query.getSingleResult();
 	}
 
-	// ScholarshipApplication --tested (Final scholarship data to be added in the database)
+	// ScholarshipType entity --tested
+	public ScholarshipType addOrUpdateScholarshipType(ScholarshipType scholarshipType) {
+		tx.begin();
+		ScholarshipType scholarshipTypePersisted = em.merge(scholarshipType);
+		tx.commit();
+		return scholarshipTypePersisted;
+	}
+
+	public ScholarshipType searchScholarshipTypeById(int scholarshipId) {
+		return em.find(ScholarshipType.class, scholarshipId);
+	}
+
+	// ScholarshipApplication --tested (Final scholarship data to be added in the
+	// database)
 	@Transactional
 	public ScholarshipApplication addOrUpdateScholarshipApplication(ScholarshipApplication application) {
 		tx.begin();
@@ -144,12 +158,15 @@ public class AllDaoMethodsImpl implements AllDaoMethods {
 		return query.getResultList();
 	}
 
-	public ScholarshipApplication searchScholarshipApplicationByStudentIdAndType(int studentId,
-			int scholarsipId) {
-		return null;
+	public ScholarshipApplication searchScholarshipApplicationByStudentIdAndType(int studentId, int scholarshipId) {
+		String jpql = "Select sa from ScholarshipApplication sa where sa.student.studentId=:sid and sa.scholarshipType.scholarshipId=:stid";
+		TypedQuery<ScholarshipApplication> query = em.createQuery(jpql, ScholarshipApplication.class);
+		query.setParameter("sid", studentId);
+		query.setParameter("stid", scholarshipId);
+		return query.getSingleResult();
 	}
 
-	// ApplicationStatus
+	// ApplicationStatus --tested
 	@Transactional
 	public ApplicationStatus addOrUpdateApplicationStatus(ApplicationStatus applicationStatus) {
 		ApplicationStatus applicationStatusPersisted = em.merge(applicationStatus);
@@ -167,18 +184,13 @@ public class AllDaoMethodsImpl implements AllDaoMethods {
 	// Institute Entity
 	@Transactional
 	public Institute addOrUpdateInstitute(Institute institute) {
+		tx.begin();
 		Institute institutePersisted = em.merge(institute);
+		tx.commit();
 		return institutePersisted;
 	}
 
 	public Institute searchInstituteById(int instituteId) {
 		return em.find(Institute.class, instituteId);
-	}
-
-	
-	// scholarshiptype entity
-	
-	public ScholarshipType searchScholarshipTypeById(int scholarshipId) {
-		return em.find(ScholarshipType.class, scholarshipId);
 	}
 }

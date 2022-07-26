@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.applet.Applet;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +20,11 @@ import com.lti.entity.BankDetails;
 import com.lti.entity.DisabilityStatus;
 import com.lti.entity.EducationDetails;
 import com.lti.entity.EntranceExamType;
+import com.lti.entity.Institute;
+import com.lti.entity.InstituteType;
+import com.lti.entity.LocationType;
 import com.lti.entity.ScholarshipApplication;
+import com.lti.entity.StateType;
 import com.lti.entity.Student;
 import com.lti.entity.StudentDocuments;
 import com.lti.entity.StudentFamily;
@@ -167,15 +173,22 @@ public class DaoTest {
 	}
 	@Test
 	public void searchScholarshipApplicationByIdTest() {
-		assertNotNull(dao.searchScholarshipApplicationById(10001));
+		assertNotNull(dao.searchScholarshipApplicationById(10004));
 	}
 	@Test
 	public void searchScholarshipApplicationByStudentId() {
-		assertNotNull(dao.searchScholarshipApplicationByStudentId(10023));
+		List<ScholarshipApplication> sal = new ArrayList<ScholarshipApplication>();
+		sal = dao.searchScholarshipApplicationByStudentId(10023);
+		assertNotNull(sal);
+		sal.stream().forEach(s->{
+			System.out.println(s.getDateApplied());
+		});
+		//System.out.println(dao.searchScholarshipApplicationByStudentId(1023));
 	}
 	@Test
 	public void searchScholarshipApplicationByStudentIdAndType() {
-		assertNotNull(dao.searchScholarshipApplicationByStudentIdAndType(10023,1));
+		assertNotNull(dao.searchScholarshipApplicationByStudentIdAndType(10023,1002));
+		System.out.println(dao.searchScholarshipApplicationByStudentIdAndType(10023,1002).getReligion());
 	}
 	
 	// ApplicaitonStatus Entity
@@ -189,4 +202,29 @@ public class DaoTest {
 		assertNotNull(dao.searchApplicationStatusById(1));
 	}
 	
+	//Institute Entity
+	@Test
+	public void addOrUpdateInstituteTest() {
+		Institute i = new Institute();
+		i.setEmail("email");
+		i.setPassword("password");
+		i.setName("name");
+		i.setInstitutetype(InstituteType.TYPE1);
+		i.setAddress("address");
+		i.setState(StateType.ANDHRA_PRADESH);
+		i.setDistrict("diiscord");
+		i.setPincode("123123");
+		i.setDiseCode(123123);
+		i.setLocation(LocationType.RURAL);
+		i.setUniversityName("universityName");
+		i.setUnversityState(StateType.ANDHRA_PRADESH);
+		i.setPrincipalName("princeipalName");
+		i.setPhoneNo("99887766554");
+		i.setApprovalStatus(true);
+		assertNotNull(dao.addOrUpdateInstitute(i));
+	}
+	@Test
+	public void searchInstituteById() {
+		assertNotNull(dao.searchInstituteById(10001));
+	}
 }

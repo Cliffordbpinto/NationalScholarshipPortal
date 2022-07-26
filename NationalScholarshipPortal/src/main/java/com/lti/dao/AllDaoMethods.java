@@ -53,7 +53,10 @@ public interface AllDaoMethods {
 	Institute addOrUpdateInstitute(Institute institute);
 	Institute searchInstituteById(int instituteId);
 	
+	//ScholarshipType Entity
+	ScholarshipType addOrUpdateScholarshipType(ScholarshipType scholarshipType);
 	ScholarshipType searchScholarshipTypeById(int scholarshipId);
+	
 	
 	
 	
